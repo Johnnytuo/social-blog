@@ -1,0 +1,59 @@
+{% extends "socialnetwork/base.html" %}
+{% load staticfiles %}
+{% block user-info %}
+
+        <span class = "dropdown" >
+            <span  id="id_logged_in_user_name"> {{user.first_name}} {{user.last_name}} ↓</span>
+            <div class="dropdown-content" >
+                <a href="{% url 'post' %}" id="id_nav_global_stream">Global Stream</a>
+                <a href="{% url 'followStream' %}" id="id_nav_follower_stream">Follower Stream</a>
+                <a href="{% url 'profile' user.id %}" id="id_nav_profile">My Profile</a>
+                <a href="{% url 'logout' %}" id="id_nav_logout">Logout </a>
+            </div>
+        </span>
+
+{% endblock %}
+
+{% block content %}
+    <h2>Profile Page for
+           <span id="id_user_name">
+                {{followee_profile.user.first_name}} {{followee_profile.user.last_name}}
+            </span>
+    </h2>
+
+        <div>
+        {% if followee_profile.profile_picture  %}
+
+            <img id="id_user_picture" src="{% url 'photo' followee_profile.id %}" alt="{{profile.bio}}" width="350px">
+{#            {{followee_profile.bio_text}}#}
+            <br>
+        {% else %}
+
+            <img id="id_user_picture" src="{% static 'images/GUNDAM.jpg' %}" width="350px" height="250px"><br>
+        {% endif %}
+
+    </div>
+
+
+    <div id ="id_user_bio">
+{#        <form action="{% url 'follower' profile.user_id%}" method="post">#}
+        {% if followee_profile.bio_text  %}
+            <textarea id ="id_bio_text" contenteditable="true" name = "bio_text">{{ followee_profile.bio_text }}</textarea><br>
+        {% else%}
+            <textarea id ="id_bio_text" contenteditable="true" name = "bio_text">I am {{followee_profile.user.first_name}} {{followee_profile.user.last_name}}. I hope there is no homework.</textarea><br>
+        {% endif %}
+
+
+        <span>
+            {% if followee_profile.user in followers %}
+                <a href="{% url 'unfollow' followee_profile.user_id %}" id ="id_unfollow">Unfollow</a>
+{#                <a href=""> Unfollow</button>#}
+            {% else %}
+                <a href="{% url 'follow' followee_profile.user_id %}" id="id_follow">Follow</a>
+            {% endif %}
+        </span><br>
+{#        </form>#}
+    </div>
+
+{% endblock %}
+

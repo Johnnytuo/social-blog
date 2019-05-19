@@ -1,0 +1,32 @@
+{% extends "socialnetwork/base.html" %}
+{% load staticfiles %}
+{% block user-info %}
+
+        <span class = "dropdown">
+            <button  id="id_logged_in_user_name"> {{user.first_name}} {{user.last_name}} ↓</button>
+            <nav class="dropdown-content">
+                <a href="{% url 'post' %}" id="id_nav_global_stream">Global Stream</a>
+                <a href="{% url 'followStream' %}" id="id_nav_follower_stream">Follower Stream</a>
+                <a href="{% url 'profile' %}" id="id_nav_profile">My Profile</a>
+                <a href="{% url 'logout' %}" id="id_nav_logout">Logout </a>
+            </nav>
+        </span>
+
+{% endblock %}
+
+{% block content %}  
+    <h2>Profile Page for 
+           <span id="id_user_name">
+                {{entry.last_name}} {{entry.first_name}}
+            </span>
+    </h2>
+
+    <img id="id_user_picture" src="{% static 'images/'|add:entry.username|add:'.jpg' %}" width="350px" height="250px"><br>
+    <div id ="id_user_bio">
+        <textarea type="text" rows="3" cols="40" readonly> I am {{entry.last_name}} {{entry.first_name}}, a member of Avengers. Our mission is to save the world.  </textarea><br>
+    </div>
+     <span>
+       <button id="id_unfollow"> Unfollow</button>
+    </span><br>
+{% endblock %}
+

@@ -1,0 +1,106 @@
+{% extends "socialnetwork/base.html" %}
+{% load staticfiles %}
+{% block user-info %}
+
+<span class = "dropdown" id="id_logged_in_user_name">
+<a href="" id="id_logged_in_user_name"> {{user.first_name}} {{user.last_name}} </a>
+<nav class="dropdown-content" id="id_logged_in_user_name">
+                <a href="{% url 'post' %}" id="id_nav_global_stream">Global Stream</a>
+                <a href="{% url 'followStream' %}" id="id_nav_follower_stream">Follower Stream</a>
+                <a href="{% url 'profile' user.id %}" id="id_nav_profile">My Profile</a>
+                <a href="{% url 'logout' %}" id="id_nav_logout">Logout </a>
+            </nav>
+        </span>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <h2>Profile Page for 
+           <span id="id_user_name">
+                {{user.first_name}} {{user.last_name}}
+            </span>
+    </h2>
+
+{#{% for profile in profiles %}#}
+    <div >
+        {% if profile.profile_picture  %}
+
+            <img id="id_user_picture" src="{% url 'photo' profile.id %}" alt="{{profile.bio}}" width="350px"><br>
+
+{#            {{profile.bio}}#}
+            <br>
+        {% else %}
+
+            <img id="id_user_picture" src="{% static 'images/GUNDAM.jpg' %}" width="350px" height="250px"><br>
+        {% endif %}
+
+    </div>
+{#{% endfor %}#}
+
+
+
+
+
+{#    <img id="id_user_picture" src="{% static 'images/GUNDAM.jpg' %}" width="350px" height="250px"><br>#}
+{#    <textarea id="id_bio_text" type="text" rows="3" cols="40"> I am {{user.first_name}} {{user.last_name}}. My responsibility is to save the world  </textarea><br>#}
+    <span>
+    <form enctype="multipart/form-data" action="{% url 'profile' user.id%}" method="post" class="add-profile">
+
+        {% if profile.bio_text  %}
+            <textarea id ="id_bio_text" contenteditable="true" name = "bio_text">{{ profile.bio_text }}</textarea>
+        {% else%}
+            <textarea id ="id_bio_text" contenteditable="true" name = "bio_text"></textarea>
+        {% endif %}
+        <table>
+            {% for field in form.visible_fields %}
+                <tr>
+{#                    {% if field.label_tag == 'Bio text:' %}#}
+                    <td> {{field.label_tag}}</td>
+                    <td> {{field}}</td>
+{#                    {% else %}#}
+
+{#                    {% endif %}#}
+
+{#                {% if profile.bio_text %}#}
+{#                    <td>{{field}} {{ profile.bio_text }}</td>#}
+{#                {% endif%}#}
+{#                    <td class="errorlist">#}
+{#                        {% for error in field.errors %} {{error}} {% endfor %}#}
+{#                    </td>#}
+{#                </tr>#}
+            {% endfor %}
+            <tr><td colspan="3"><input id="id_update_profile_button" type="submit" value="Submit"></td></tr>
+        </table>
+        {% csrf_token %}
+
+{#        Profile Picture: <input id="id_profile_picture" type="file"> <br>#}
+{#        <button id="id_update_profile_button" type="submit"> Submit</button>#}
+{#        {% csrf_token %}#}
+    </form>
+    </span><br>
+{% endblock %}
+
+<div class="errorlist">
+    {{message}}
+</div>
+
+{% block follower %}
+
+    <span class = "following">
+        You are following: <br>
+    {% for followee in followers %}
+        {% if followee  %}
+
+
+            <ul>
+                <li><a class="follower_link" id="id_profile_link_{{ followee.username }}" href="{% url 'profile' followee.id%}">{{ followee.first_name }} {{ followee.last_name }}</a></li>
+{#                <li><a class="follower_link" id="id_profile_link_2" href="{% url 'follower' %}?id=2">Steve Rogers</li>#}
+{#                <li><a class="follower_link" id="id_profile_link_2" href="{% url 'follower' %}?id=3">Peter Parker</li>#}
+            </ul>
+
+        {% endif %}
+    {%endfor%}
+    </span>
+{% endblock %}

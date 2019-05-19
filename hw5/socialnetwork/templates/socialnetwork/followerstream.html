@@ -1,0 +1,91 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block user-info %}
+
+<span class = "dropdown" id="id_logged_in_user_name">
+    <a href="" id="id_logged_in_user_name"> {{user.first_name}} {{user.last_name}} </a>
+    <nav class="dropdown-content" id="id_logged_in_user_name">
+                    <a href="{% url 'post' %}" id="id_nav_global_stream">Global Stream</a>
+                    <a href="{% url 'followStream' %}" id="id_nav_follower_stream">Follower Stream</a>
+                    <a href="{% url 'profile' user.id%}" id="id_nav_profile">My Profile</a>
+                    <a href="{% url 'logout' %}" id="id_nav_logout">Logout </a>
+            </nav>
+        </span>
+
+{% endblock %}
+
+{% block content %}
+    <h2> Follower Stream</h2>
+
+{#    <form class="post" action="{% url 'post' %}" method="post">#}
+{#        {% for field in forms.visible_fields %}#}
+{#            <span id="id_post_text">New Post: {{ field }}</span>#}
+{#        <button type = "submit" id="id_post_button">submit</button><br><br>#}
+{#        {% endfor  %}#}
+{#        {% csrf_token %}#}
+{#    </form>#}
+
+{#    <div class="errorlist">#}
+{#        {% for error in errors%}#}
+{#            {{error}}#}
+{#        {% endfor %}#}
+{#    </div>#}
+
+    <div class ="post_content">
+        {% for post in posts %}
+
+            <em>Post by</em>
+
+            <a href="{% url 'profile' post.user.id %}" class="profile_link" id="id_post_profile_{{ post.id }}" >{{post.user.first_name}} {{post.user.last_name}} </a>-
+            <span class="post_content_text" id="id_post_text_{{ post.id }}">
+                {{post.post_text}}
+            </span>
+        <span class="post_time" id="id_post_date_time_{{ post.id }}">-{{post.time}}</span><br>
+            <br>
+
+            <div class="comments">
+                Comment: <input class="comment" id="id_comment_text_{{ post.id }}">
+            <button type = "button" id="id_comment_button_{{ post.id }}">submit</button>
+            </div>
+        {% endfor %}
+
+{#        <em>Post by</em>#}
+{#        <a href="{% url 'follower' %}?id=2" id="id_post_profile_2" class="profile_link">Steve Rogers</a>#}
+{#        <span class="post_content_text" id="id_post_text_2">#}
+{#            - Anyone wants to go to gym?#}
+{#        </span>#}
+{#        <span class="post_time" id="id_post_date_time_2">-2/10/2019 13:28pm</span><br><br>#}
+
+    </div>
+
+
+{#    <div class="comments">#}
+{#    <em>Comment by</em>#}
+{#    <a href="{% url 'follower' %}?id=1" id="id_comment_profile_1" class="profile_link">Tony Stark</a>#}
+{#    <span class="comment_content" id="id_comment_text_1">#}
+{#    - I enjoyed my weekend in Florida#}
+{#    </span>#}
+{#    <span class="post_time" id="id_comment_date_time_1">-2/10/2019 02:30am</span><br>#}
+{##}
+{#    <em>Comment by</em>#}
+{#    <a href="{% url 'follower' %}?id=3" id="id_comment_profile_3" class="profile_link">Peter Parker</a>#}
+{#    <span class="comment_content" id="id_comment_text_3">#}
+{#    - Get out of homework! Let's enjoy fresh air!#}
+{#    </span>#}
+{#    <span class="post_time" id="id_comment_date_time_3">-2/10/2019 10:00am</span><br><br>#}
+{##}
+{#    Comment: <input class="comment" id="id_comment_text_1">#}
+{#    <button type = "button" id="id_comment_button_1">submit</button><br>#}
+{#    </div>#}
+
+
+
+{#    <div class="comments">#}
+{#    Comment: <input class="comment" id="id_comment_text_2">#}
+{#    <button type = "button" id="id_comment_button_2">submit</button>#}
+{#    </div>#}
+{##}
+{#    <div>#}
+{##}
+{#    </div>#}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "socialnetwork/base.html" %}
+{% load staticfiles %}
+{% block user-info %}
+
+        <span class = "dropdown">
+            <button  id="id_logged_in_user_name"> {{user.first_name}} {{user.last_name}} ↓</button>
+            <nav class="dropdown-content">
+                <a href="{% url 'post' %}" id="id_nav_global_stream">Global Stream</a>
+                <a href="{% url 'followStream' %}" id="id_nav_follower_stream">Follower Stream</a>
+                <a href="{% url 'profile' %}" id="id_nav_profile">My Profile</a>
+                <a href="{% url 'logout' %}" id="id_nav_logout">Logout </a>
+            </nav>
+        </span>
+
+{% endblock %}
+
+{% block content %}  
+    <h2>Profile Page for 
+           <span id="id_user_name">
+                {{user.first_name}} {{user.last_name}}
+            </span>
+    </h2>
+
+    <img id="id_user_picture" src="{% static 'images/GUNDAM.jpg' %}" width="350px" height="250px"><br>
+    <textarea id="id_bio_text" type="text" rows="3" cols="40"> I am {{user.first_name}} {{user.last_name}}. My responsibility is to save the world  </textarea><br>
+    <span>
+        Profile Picture: <button id="id_profile_picture"> Choose File</button>
+        No file chosen   <button id="id_update_profile_button"> Choose File</button>
+    </span><br>
+{% endblock %}
+
+{% block follower %}
+
+    <span class = "following">
+
+    You are following: <br>
+
+        <ul>
+            <li><a class="follower_link" id="id_profile_link_1" href="{% url 'follower' %}?id=1">Tony Stark</a></li>
+            <li><a class="follower_link" id="id_profile_link_2" href="{% url 'follower' %}?id=2">Steve Rogers</li>
+            <li><a class="follower_link" id="id_profile_link_2" href="{% url 'follower' %}?id=3">Peter Parker</li>
+        </ul>
+    </span>
+{% endblock %}

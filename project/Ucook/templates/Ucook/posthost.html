@@ -1,0 +1,53 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Post for Host</title>-->
+<!--</head>-->
+<!--<body>-->
+
+{% extends "Ucook/base.html" %}
+{% block content %}
+
+<div class="posthost-address">
+    <p>My Address</p>
+    <label>Address 1: </label>
+    <input id="posthost-address-1" type="text"><br>
+    <label>Address 2: </label>
+    <input id="posthost-address-2" type="text"><br>
+    <label>Postal Code: </label>
+    <input id="posthost-postalcode" type="text"><br>
+    <label>City: </label>
+    <input id="posthost-city" type="text"><br>
+    <label>State: </label>
+    <input id="posthost-state" type="text"><br>
+    <p></p>
+</div>
+
+<div class="posthost-provide">
+    <p>What I provide:</p>
+    <input id="posthost-chinese" type="checkbox">Chinese
+    <input id="posthost-korean" type="checkbox">Korean
+    <input id="posthost-american" type="checkbox">American
+    <input id="posthost-italian" type="checkbox">Italian
+    <input id="posthost-indian" type="checkbox">Indian
+    <input id="posthost-japanese" type="checkbox">Japanese
+    <input id="posthost-mexican" type="checkbox">Mexican
+    <input id="posthost-thai" type="checkbox">Thai
+    <input id="posthost-vegetarian" type="checkbox">Vegetarian
+
+    <p>What I need:</p>
+    <input id="posthost-wash" type="checkbox">Wash Bowl
+    <input id="posthost-ingredients" type="checkbox">Bring Ingredients
+    <input id="posthost-prepare" type="checkbox">Prepare Food
+    <input id="posthost-cook" type="checkbox">Do Cooking
+
+    <P>Information I want to share:</P>
+    <input id="posthost-information" type="text">
+</div>
+
+
+{% endblock %}
+
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,26 @@
+
+ <br>
+ <img id="login-logo" src="ucook.png" alt="logo" width="360" height="260">
+ <span id = "login-nameOfSite">UCook</span>
+
+
+{% block content %}
+    <form method="post" action="{% url 'login' %}">
+        username: <input type="text" name="username" /><br>
+        password: <input type="text" name="password" /><br>
+        <input type="submit" value="Login" />
+            {% csrf_token %}
+    </form>
+     <a href="{% url 'register' %}">
+     <button id = "login-register">Register</button>
+     </a>
+    <p>Other way to login:</p>
+    <a href="" id="login-gmailLogin">Gmail Login</a ><br>
+
+    {% for error in form.non_field_errors %}
+        <p class="errorlist">
+            {{ error }}
+        </p>
+    {% endfor %}
+
+{% endblock %}

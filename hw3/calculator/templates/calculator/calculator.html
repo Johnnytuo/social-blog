@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/static/css/calculator.css">
+</head>
+
+
+<body>
+
+    <form action="calculator" method="POST">
+        <div class="row">
+            {% if result != null%}
+            <input id="calc-display" name = "display" type="text" value= {{result}} readonly>
+            <input type="hidden" name= "preValue" value =  {{preValue}}>
+            <input type="hidden" name= "newValue" value =  {{newValue}}>
+            <input type="hidden" name= "preOp" value =  {{preOp}}>
+            <input type="hidden" name= "last" value =  {{last}}>
+            {% else %}
+            <input id="calc-display" name = "display" type="text" value= 0 readonly>
+            <input type="hidden" name= "preValue" value =  0>
+            <input type="hidden" name= "newValue" value =  0>
+            <input type="hidden" name= "preOp" value =  "plus">
+            <input type="hidden" name= "last" value =  "last">
+            {% endif %}
+        </div>
+        
+        <div class="row">
+            <button type="submit" class="digit" name="button" id="calc-key-7" value="7">7</button>
+            <button type="submit" class="digit" name="button" id="calc-key-8" value="8">8</button>
+            <button type="submit" class="digit" name="button" id="calc-key-9" value="9">9</button>
+            <button type="submit" class="op"    name="button" id="calc-plus" value="plus">&plus;</button>
+        </div>
+
+        <div class="row">
+            <button type="submit" class="digit" name="button" id="calc-key-4" value="4">4</button>
+            <button type="submit" class="digit" name="button" id="calc-key-5" value="5">5</button>
+            <button type="submit" class="digit" name="button" id="calc-key-6" value="6">6</button>
+            <button type="submit" class = "op"  name="button" id="calc-minus" value="minus">&minus;</button>
+        </div>
+
+        <div class="row">
+            <button type="submit" class="digit" name="button" id="calc-key-1" value="1">1</button>
+            <button type="submit" class="digit" name="button" id="calc-key-2" value="2">2</button>
+            <button type="submit" class="digit" name="button" id="calc-key-3" value="3">3</button>
+            <button type="submit" class = "op"  name="button" id="calc-times" value="times">&times;</button>
+        </div>
+
+        <div class="row">
+            <button type="submit" class="digit" name="button" id="calc-key-0" value="0">0</button>
+            <button type="submit" class = "op"  name="button" id="calc-equals" value="equals">&equals;</button>
+            <button type="submit" class = "op"  name="button" id="calc-divide" value="divide">&divide;</button>
+
+        </div>
+
+        
+
+        {% csrf_token %}
+    </form>
+    
+
+</body>
+
+</html>

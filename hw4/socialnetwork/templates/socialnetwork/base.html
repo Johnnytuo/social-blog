@@ -1,0 +1,55 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    {% load staticfiles %}
+		<link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css">
+		<title> {% block title %} socialnetwork {% endblock %} </title>
+	</head>
+
+	<body>
+
+		<div class="header" style="background:url('{% static 'images/logo.jpg' %}');background-size:20%" >
+            <span id="id_name_of_site">
+			    Social Blog
+		    </span>
+
+            <div class="user-info">
+			    {% block user-info %}
+			    {% endblock %}
+	        </div>
+
+        </div>
+        <div>
+            <video style="top: -30.2963px;" id="intVideo" class="int-video" preload="auto" autoplay muted loop="" height="100%" width="100%">
+    <!-- <source src="/video/3in1.webm" type="video/webm">                -->
+         <source src="/static/video/marvel.mp4" type="video/mp4">
+
+        </video>
+
+	    <div class="search-bar">
+			{% block search-bar %}
+			{% endblock %}
+		</div>
+
+	    <div class="content">
+		    {% block content %}
+		    {% endblock %}
+		</div>
+        <div class="form">
+		    {% block form %}
+		    {% endblock %}
+		</div>
+
+        <div class="follower">
+		    {% block follower %}
+		    {% endblock %}
+		</div>
+
+
+        </div>
+
+
+	</body>
+</html>

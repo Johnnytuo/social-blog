@@ -1,0 +1,40 @@
+{% extends "socialnetwork/base.html" %}
+
+
+{% block user-info %}
+    <div>
+        <a href="{% url 'login' %}" class="login_register_link" id="id_login_link">
+            Login
+        </a>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Register</h2>
+{% endblock %}
+
+{% block form %}
+    <form method="post" action="{% url 'register' %}">
+        <table>
+            {% for field in form.visible_fields %}
+                <tr>
+                    <td>{{field.label_tag}}</td>
+                    <td>{{field}}</td>
+                    <td class="errorlist">
+                        {% for error in field.errors %} {{error}} {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% csrf_token %}
+        <button type="submit" id = "id_register_button">Register</button>
+    </form>
+
+    {% for error in form.non_field_errors %}
+    <p class="errorlist">
+            {{ error }}
+        </p>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Welcome</title>-->
+<!--</head>-->
+<!--<body>-->
+
+{% extends "Ucook/base.html" %}
+{% block content %}
+
+<div class="welcome-video">
+    <p>Welcome to UCook!</p>
+    <a href="introduction.html"><button>Introduction</button></a>
+    <a href="explore.html"><button>Explore</button></a>
+    <span class = "welcome-dropdown">
+            <button  id="welcome-post"> Post</button>
+            <nav class="welcome-dropdown-content">
+                <a href="{% url 'iAmHost' %}" id="welcome-iAmHost">I Am Host</a>
+                <a href="{% url 'iAmNonHost' %}" id="welcome-iAmNonHost">I Am Non-host </a>
+            </nav>
+    </span>
+    <a href="question.html"><button>Recently Asked Questions</button></a>
+</div>
+
+{% endblock %}
+
+<!--</body>-->
+<!--</html>-->

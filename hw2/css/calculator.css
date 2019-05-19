@@ -1,0 +1,47 @@
+
+.row {
+    width: 300px;
+    margin: 5px;
+    border-width: 0px;
+    text-align: right;
+}
+
+button {
+    width: 50px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+    font-size: large;
+    border-radius: 12px;
+    text-align: center;
+    border-color: black;
+}
+
+.digit{
+    background-color: rgb(144, 199, 144);
+}
+
+
+.op{
+    background-color: bisque;
+}
+
+button:hover{
+    background-color:brown;
+}
+
+#calc-display{
+    width: 240px;
+    height: 30px;
+    text-align: right;
+    background-color:rgb(144, 199, 144);
+    font-size:30px;
+    font-family:sans-serif;
+    font-weight:bold;
+    padding: 8px;
+    border-color: black;
+}
+
+
+
+
